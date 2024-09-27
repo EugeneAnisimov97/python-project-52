@@ -5,7 +5,7 @@ description = ""
 authors = ["Eugene Anisimov <zero0061@mail.ru>"]
 readme = "README.md"
 packages = [
-    { include = "page_analyzer" },
+    { include = "task_manager" },
 ]
 
 [tool.poetry.dependencies]
