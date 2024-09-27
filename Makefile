@@ -10,7 +10,7 @@ lint:
 start:
 	poetry run gunicorn --bind 0.0.0.0:8000 task_manager.wsgi:application
 
-generate migrate:
+genmigrate:
 	poetry run python manage.py makemigrations
 
 migrate:
