@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from dotenv import load_dotenv
-from urllib.parse import urlparse
 import dj_database_url
 import os
 
@@ -30,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', False)
 
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',') if os.getenv('ALLOWED_HOSTS') else []
+ALLOWED_HOSTS = os.getenv('HOSTS').split(',') if os.getenv('HOSTS') else []
 
 
 # Application definition
@@ -84,9 +83,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'config': dj_database_url.config(conn_max_age=600, 
-                                      default=os.getenv('CONFIG_DATABASE_URL')),
-    }
+    'config': dj_database_url.config(
+        conn_max_age=600,
+        default=os.getenv('CONFIG_DATABASE_URL')),
+}
 
 
 # Password validation
