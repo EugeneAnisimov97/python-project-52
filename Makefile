@@ -1,3 +1,7 @@
+MANAGE := poetry run python manage.py
+
+.PHONY: migrate shell
+
 install:
 	poetry install
 
@@ -16,5 +20,8 @@ genmigrate:
 migrate:
 	poetry run python manage.py migrate --database=default 
 
-migrate config:
+migrateconfig:
 	poetry run python manage.py migrate --database=config
+
+shell:
+	@$(MANAGE) shell

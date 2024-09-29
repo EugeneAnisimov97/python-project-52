@@ -14,7 +14,8 @@ def validate_username(user_name):
 class Users(models.Model):
     first_name = models.CharField(max_length=150, null=True)
     last_name = models.CharField(max_length=150, null=True)
-    username = models.CharField(max_length=128, unique=True, validators=[validate_username])
+    username = models.CharField(max_length=150, unique=True, validators=[validate_username])
+    password = models.CharField(max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def set_password(self, password):
