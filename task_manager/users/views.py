@@ -24,5 +24,5 @@ class UserCreate(View):
             user.set_password(form.cleaned_data['password1'])
             user.save()
             messages.success(request, 'Пользователь успешно зарегистрирован')
-            return redirect('users_index')
+            return redirect('login')
         return render(request, 'users/create.html', {'form': form})

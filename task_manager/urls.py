@@ -22,7 +22,7 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    # path('login/', views.login, name='login'),
+    path('login/', views.Login.as_view(), name='login'),
     path('users/', include('task_manager.users.urls')),
     # path('users/create/', views.registration, name='registration'),
 ]

@@ -20,6 +20,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='users',
             name='username',
-            field=models.CharField(max_length=150, unique=True, validators=[task_manager.users.models.validate_username]),
+            field=models.CharField(max_length=150, unique=True),
         ),
     ]

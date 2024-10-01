@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('first_name', models.CharField(max_length=150, null=True)),
                 ('last_name', models.CharField(max_length=150, null=True)),
-                ('username', models.CharField(max_length=128, unique=True, validators=[task_manager.users.models.validate_username])),
+                ('username', models.CharField(max_length=128, unique=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
             ],
         ),

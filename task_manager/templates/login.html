@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">{{ message }}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+        {% endfor %}
+    {% endif %}
+    <h1 class="my-4">
+    Вход
+    </h1>
+    <ul class="list-unstyled text-danger">
+    {% for error in form.username.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+    </ul>
+
+
+
+
+
+
+<form method="post">
+    {% csrf_token %}
+
+<div class="mb-3">
+
+    <label class="form-label" for="id_username">{% trans "Имя пользователя" %}</label>
+    <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150"  class="form-control {% if form.username.errors %}is-invalid{% elif form.username.value %}is-valid{% endif %}" placeholder="{% trans "Имя пользователя" %}" required id="id_username" value="{{ form.username.value|default:'' }}">
+
+
+
+
+
+
+</div>
+<div class="mb-3"><label class="form-label" for="id_password">{% trans "Пароль" %}</label>
+
+    <input type="password" name="password" autocomplete="current" class="form-control {% if form.password.errors %}is-invalid{% elif form.password.value %}is-valid{% endif %}" placeholder="{% trans "Пароль" %}" required id="id_password"></div>
+
+
+
+
+  <input class="btn btn-primary" type="submit" value="Войти">
+</form>
+</div>
+{% endblock %}
