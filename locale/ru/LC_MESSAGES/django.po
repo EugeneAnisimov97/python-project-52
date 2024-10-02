@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-29 17:33+0200\n"
+"POT-Creation-Date: 2024-10-02 20:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,76 +19,91 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+#: task_manager/templates/base.html:10
+msgid "Hexlet Task Manager"
+msgstr "Менеджер задач hexlet"
 
-#: task_manager/templates/base.html:3
-msgid "Менеджер задач Hexlet"
-msgstr ""
-
-#: task_manager/templates/base.html:9
-msgid "Менеджер задач"
-msgstr ""
-
-#: task_manager/templates/base.html:16
-msgid "Пользователи"
-msgstr ""
+#: task_manager/templates/base.html:14
+msgid "Task Manager"
+msgstr "Менеджер задач "
 
 #: task_manager/templates/base.html:21
-msgid "Вход"
-msgstr ""
+#: task_manager/templates/users/users.html:17
+msgid "Users"
+msgstr "Пользователи"
 
-#: task_manager/templates/base.html:24
-#: task_manager/templates/users/registration.html:6
-msgid "Регистрация"
-msgstr ""
+#: task_manager/templates/base.html:26
+msgid "Entrance"
+msgstr "Вход"
+
+#: task_manager/templates/base.html:29
+#: task_manager/templates/users/create.html:5
+msgid "Registration"
+msgstr "Регистрация"
+
+#: task_manager/templates/index.html:9
+msgid "Hello from Hexlet!"
+msgstr "Привет от Хекслета!"
 
 #: task_manager/templates/index.html:10
-msgid "Привет от Хекслета!"
-msgstr ""
+msgid "Practical programming courses"
+msgstr "Практические курсы по программированию"
 
-#: task_manager/templates/index.html:11
-msgid "Практические курсы по программированию"
-msgstr ""
+#: task_manager/templates/index.html:12
+msgid "Find out more"
+msgstr "Узнать больше"
 
-#: task_manager/templates/index.html:13
-msgid "Узнать больше"
-msgstr ""
+#: task_manager/templates/login.html:24 task_manager/templates/login.html:25
+#: task_manager/templates/users/create.html:24
+#: task_manager/templates/users/users.html:26
+msgid "Username"
+msgstr "Имя пользователя"
 
-#: task_manager/templates/users/login.html:10
-#: task_manager/templates/users/registration.html:17
-msgid "Имя пользователя"
-msgstr ""
+#: task_manager/templates/login.html:28 task_manager/templates/login.html:29
+#: task_manager/templates/users/create.html:37
+#: task_manager/templates/users/create.html:38
+msgid "Password"
+msgstr "Пароль"
 
-#: task_manager/templates/users/login.html:13
-#: task_manager/templates/users/registration.html:22
-msgid "Пароль"
-msgstr ""
+#: task_manager/templates/users/create.html:9
+#: task_manager/templates/users/create.html:10
+msgid "Name"
+msgstr "Имя"
 
-#: task_manager/templates/users/registration.html:11
-msgid "Имя"
-msgstr ""
+#: task_manager/templates/users/create.html:16
+#: task_manager/templates/users/create.html:17
+msgid "Surname"
+msgstr "Фамилия"
 
-#: task_manager/templates/users/registration.html:14
-msgid "Фамилия"
-msgstr ""
+#: task_manager/templates/users/create.html:44
+#: task_manager/templates/users/create.html:45
+msgid "Password confirmation"
+msgstr "Подтверждение пароля"
 
-#: task_manager/templates/users/registration.html:19
-msgid ""
-"Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./"
-"+/-/_."
-msgstr ""
+#: task_manager/templates/users/create.html:49
+msgid "To confirm, please enter your password again."
+msgstr "Для подтверждения введите пароль еще раз."
 
-#: task_manager/templates/users/registration.html:26
-msgid "Ваш пароль должен содержать как минимум 3 символа."
-msgstr ""
+#: task_manager/templates/users/create.html:51
+msgid "Register"
+msgstr "Регистрация"
 
-#: task_manager/templates/users/registration.html:30
-msgid "Подтверждение пароля"
-msgstr ""
+#: task_manager/templates/users/users.html:25
+msgid "ID"
+msgstr "ID"
 
-#: task_manager/templates/users/registration.html:32
-msgid "Для подтверждения введите, пожалуйста, пароль ещё раз."
-msgstr ""
+#: task_manager/templates/users/users.html:27
+msgid "Full name"
+msgstr "Полное имя"
 
-#: task_manager/templates/users/registration.html:34
-msgid "Зарегистрировать"
-msgstr ""
+#: task_manager/templates/users/users.html:28
+msgid "Creation date"
+msgstr "Дата создания"
+
+#: task_manager/templates/users/users.html:40
+msgid "Change"
+msgstr "Изменить"
+
+#: task_manager/templates/users/users.html:42
+msgid "Delete"
+msgstr "Удалить"
