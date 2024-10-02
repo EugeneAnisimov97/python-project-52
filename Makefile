@@ -12,16 +12,16 @@ lint:
 	poetry run flake8
 
 start:
-	poetry run gunicorn --bind 0.0.0.0:8000 task_manager.wsgi:application
+	export DJANGO_ENV=production && poetry run gunicorn --bind 0.0.0.0:8000 task_manager.wsgi:application
 
 genmigrate:
-	poetry run python manage.py makemigrations
+	@$(MANAGE) makemigrations
 
 migrate:
-	poetry run python manage.py migrate --database=default 
+	@$(MANAGE) migrate --database=default 
 
 migrateconfig:
-	poetry run python manage.py migrate --database=config
+	@$(MANAGE) migrate --database=config
 
 shell:
 	@$(MANAGE) shell

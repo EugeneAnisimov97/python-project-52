@@ -85,10 +85,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    'config': dj_database_url.config(
+    } if os.getenv('DJANGO_ENV') == 'development' else dj_database_url.config(
         conn_max_age=600,
-        default=os.getenv('CONFIG_DATABASE_URL')),
+        default=os.getenv('CONFIG_DATABASE_URL')
+    )
 }
 
 
