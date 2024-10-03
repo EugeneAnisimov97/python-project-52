@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from task_manager.users.models import Users
+from task_manager.users.models import User
 from task_manager.forms import LoginForm
 from django.views import View
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 def index(request):
@@ -26,5 +26,12 @@ class Login(View):
                 login(request, user)
                 messages.success(request, 'Вы залогинены')
                 return redirect('index')
-        form.add_error('username', 'Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут быть чувствительны к регистру.')
+            
+            form.add_error('username', 'Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут быть чувствительны к регистру.')
         return render(request, 'login.html', {'form': form})
+
+class Logout(View):
+    def post(self, request):
+        logout(request)
+        messages.info(request, 'Вы разлогинены')
+        return redirect('index')

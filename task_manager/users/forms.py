@@ -1,5 +1,5 @@
 from django import forms
-from task_manager.users.models import Users
+from task_manager.users.models import User
 import re
 
 class UserForm(forms.ModelForm):
@@ -7,7 +7,7 @@ class UserForm(forms.ModelForm):
     password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput, required=True)
     
     class Meta:
-        model = Users
+        model = User
         fields = ['first_name', 'last_name', 'username', 'password1', 'password2']
     
     def __init__(self, *args, **kwargs):
@@ -31,7 +31,7 @@ class UserForm(forms.ModelForm):
         if not re.match(r'^[\wа-яА-ЯёЁ@._+-]+$', username):
             raise forms.ValidationError("Введите правильное имя пользователя. Оно может содержать только буквы (латиница и кириллица), цифры и знаки @/./+/-/_.")
 
-        if Users.objects.filter(username=username).exists():
+        if User.objects.filter(username=username).exists():
             raise forms.ValidationError("Пользователь с таким именем уже существует.")
         return username
     

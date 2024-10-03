@@ -17,6 +17,31 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+         {%if user.is_authenticated%}   
+         <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/users/">{% trans "Users" %}</a>
+            </li>
+            
+              <li class="nav-item">
+                <a class="nav-link" href="/statuses/">{% trans "Statuses" %}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/labels/">{% trans "Tags" %}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/tasks/">{% trans "Tasks" %}</a>
+              </li>
+              <ul class="navbar-nav">
+                
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                  <input class="btn nav-link" type="submit" value="{% trans "Exit" %}">
+                </form>
+              
+            </ul>
+          </ul>
+            {%else%}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/users/">{% trans "Users" %}</a>
@@ -30,6 +55,7 @@
                     <a class="nav-link" href="/users/create/">{% trans "Registration" %}</a>
                 </li>
             </ul>
+            {%endif%}
         </div>
     </nav>
 

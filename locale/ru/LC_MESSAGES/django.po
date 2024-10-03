@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 20:14+0200\n"
+"POT-Creation-Date: 2024-10-03 21:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,49 +19,71 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-#: task_manager/templates/base.html:10
+
+#: task_manager/templates/base.html:11
 msgid "Hexlet Task Manager"
 msgstr "Менеджер задач hexlet"
 
-#: task_manager/templates/base.html:14
+#: task_manager/templates/base.html:15
 msgid "Task Manager"
 msgstr "Менеджер задач "
 
-#: task_manager/templates/base.html:21
-#: task_manager/templates/users/users.html:17
+#: task_manager/templates/base.html:23 task_manager/templates/base.html:47
+#: task_manager/templates/users/users.html:14
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/base.html:26
+#: task_manager/templates/base.html:27
+msgid "Statuses"
+msgstr "Статусы"
+
+#: task_manager/templates/base.html:30
+msgid "Tags"
+msgstr "Метки"
+
+#: task_manager/templates/base.html:33
+msgid "Tasks"
+msgstr "Задачи"
+
+#: task_manager/templates/base.html:39
+msgid "Exit"
+msgstr "Выход"
+
+#: task_manager/templates/base.html:52
 msgid "Entrance"
 msgstr "Вход"
 
-#: task_manager/templates/base.html:29
+#: task_manager/templates/base.html:55
 #: task_manager/templates/users/create.html:5
 msgid "Registration"
 msgstr "Регистрация"
 
-#: task_manager/templates/index.html:9
+#: task_manager/templates/index.html:15
 msgid "Hello from Hexlet!"
 msgstr "Привет от Хекслета!"
 
-#: task_manager/templates/index.html:10
+#: task_manager/templates/index.html:16
 msgid "Practical programming courses"
 msgstr "Практические курсы по программированию"
 
-#: task_manager/templates/index.html:12
+#: task_manager/templates/index.html:18
 msgid "Find out more"
 msgstr "Узнать больше"
 
+#: task_manager/templates/login.html:11 task_manager/templates/login.html:30
+msgid "Login"
+msgstr "Вход"
+
 #: task_manager/templates/login.html:24 task_manager/templates/login.html:25
 #: task_manager/templates/users/create.html:24
-#: task_manager/templates/users/users.html:26
+#: task_manager/templates/users/create.html:25
+#: task_manager/templates/users/users.html:19
 msgid "Username"
 msgstr "Имя пользователя"
 
 #: task_manager/templates/login.html:28 task_manager/templates/login.html:29
-#: task_manager/templates/users/create.html:37
-#: task_manager/templates/users/create.html:38
+#: task_manager/templates/users/create.html:31
+#: task_manager/templates/users/create.html:32
 msgid "Password"
 msgstr "Пароль"
 
@@ -75,35 +97,35 @@ msgstr "Имя"
 msgid "Surname"
 msgstr "Фамилия"
 
-#: task_manager/templates/users/create.html:44
-#: task_manager/templates/users/create.html:45
+#: task_manager/templates/users/create.html:38
+#: task_manager/templates/users/create.html:39
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
-#: task_manager/templates/users/create.html:49
+#: task_manager/templates/users/create.html:43
 msgid "To confirm, please enter your password again."
 msgstr "Для подтверждения введите пароль еще раз."
 
-#: task_manager/templates/users/create.html:51
+#: task_manager/templates/users/create.html:45
 msgid "Register"
 msgstr "Регистрация"
 
-#: task_manager/templates/users/users.html:25
+#: task_manager/templates/users/users.html:18
 msgid "ID"
 msgstr "ID"
 
-#: task_manager/templates/users/users.html:27
+#: task_manager/templates/users/users.html:20
 msgid "Full name"
 msgstr "Полное имя"
 
-#: task_manager/templates/users/users.html:28
+#: task_manager/templates/users/users.html:21
 msgid "Creation date"
 msgstr "Дата создания"
 
-#: task_manager/templates/users/users.html:40
+#: task_manager/templates/users/users.html:33
 msgid "Change"
 msgstr "Изменить"
 
-#: task_manager/templates/users/users.html:42
+#: task_manager/templates/users/users.html:35
 msgid "Delete"
 msgstr "Удалить"

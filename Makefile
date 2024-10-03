@@ -18,10 +18,13 @@ genmigrate:
 	@$(MANAGE) makemigrations
 
 migrate:
-	@$(MANAGE) migrate --database=default 
+	python manage.py migrate
 
 migrateconfig:
-	@$(MANAGE) migrate --database=config
+	export DJANGO_ENV=production && python manage.py migrate
+
+trans:
+	django-admin makemessages -l ru
 
 shell:
 	@$(MANAGE) shell

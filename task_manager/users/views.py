@@ -1,7 +1,7 @@
 from django.views import View
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from task_manager.users.models import Users
+from task_manager.users.models import User
 from task_manager.users.forms import UserForm
 from django.contrib import messages
 
@@ -9,7 +9,7 @@ from django.contrib import messages
 # Create your views here.
 class UsersIndex(View):
     def get(self, request):
-        users = Users.objects.all()
+        users = User.objects.all()
         return render(request, 'users/users.html', context={'users': users})
 
 class UserCreate(View):
