@@ -4,17 +4,8 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 
 
 # Create your models here.
-class UserManeger(BaseUserManager):
-    def create_user(self, username, password=None, **extra_fields):
-        user = self.model(username=username, **extra_fields)
-        user.set_password(password)
-        user.seve(using=self._db)
-        return user        
-    
-    def create_superuser(self, username, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        return self.create_user(username.password, **extra_fields)
+class UserManager(BaseUserManager):
+    pass
         
         
 class User(AbstractBaseUser, PermissionsMixin):
@@ -26,19 +17,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     
-    objects = UserManeger()
+    objects = UserManager()
     
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
-
-    groups = models.ManyToManyField(Group, related_name='custom_user_set', blank=True)
-    user_permissions = models.ManyToManyField(Permission, related_name='custom_user_set', blank=True)
-    
-    def set_password(self, password):
-        self.password = make_password(password)
-
-    def check_password(self, password):
-        return check_password(password, self.password)
-
-    
-    

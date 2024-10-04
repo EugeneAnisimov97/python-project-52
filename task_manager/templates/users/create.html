@@ -31,6 +31,8 @@
             {% for error in form.username.errors %}
                 <div class="text-danger">{{ error }}</div>
             {% endfor %}
+            <div class="form-text">Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_.</div>
+            
         </div>
         <div class="mb-3">
             <label class="form-label" for="id_password1">{% trans "Password" %}</label>
