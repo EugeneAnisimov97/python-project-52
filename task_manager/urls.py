@@ -21,10 +21,10 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('login/', views.Login.as_view(), name='login'),
+    path('', views.IndexView.as_view(), name='index'),
+    path('login/', views.LoginView.as_view(), name='login'),
     path('users/', include('task_manager.users.urls')),
-    path('logout/', views.Logout.as_view(), name='logout'),
+    path('logout/', views.LogoutView.as_view(), name='logout'),
 ]
 
 urlpatterns = i18n_patterns(

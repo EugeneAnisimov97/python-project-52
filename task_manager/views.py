@@ -6,12 +6,12 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
+class IndexView(View):
+    def get(self, request):
+        return render(request, 'index.html',)
 
-def index(request):
-    return render(request, 'index.html',)
 
-
-class Login(View):
+class LoginView(View):
     def get(self, request):
         form = LoginForm()
         return render(request, 'login.html', {'form': form})
@@ -30,7 +30,7 @@ class Login(View):
             form.add_error('username', 'Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут быть чувствительны к регистру.')
         return render(request, 'login.html', {'form': form})
 
-class Logout(View):
+class LogoutView(View):
     def post(self, request):
         logout(request)
         messages.info(request, 'Вы разлогинены')

@@ -28,3 +28,6 @@ trans:
 
 shell:
 	@$(MANAGE) shell
+
+test:
+	python manage.py test
