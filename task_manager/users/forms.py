@@ -28,10 +28,11 @@ class UserForm(forms.ModelForm):
     
     def clean_username(self):
         username = self.cleaned_data.get('username')
+        user_id = self.instance.id if self.instance else None
         if not re.match(r'^[\wа-яА-ЯёЁ@._+-]+$', username):
             raise forms.ValidationError("Введите правильное имя пользователя. Оно может содержать только буквы (латиница и кириллица), цифры и знаки @/./+/-/_.")
 
-        if User.objects.filter(username=username).exists():
+        if User.objects.filter(username=username).exclude(id=user_id).exists():
             raise forms.ValidationError("Пользователь с таким именем уже существует.")
         return username
     
