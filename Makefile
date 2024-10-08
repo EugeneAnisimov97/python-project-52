@@ -26,6 +26,9 @@ migrateconfig:
 trans:
 	django-admin makemessages -l ru
 
+transsave:
+	django-admin compilemessages
+
 shell:
 	@$(MANAGE) shell
 

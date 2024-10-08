@@ -9,7 +9,7 @@ from django.contrib import messages
 class UsersIndex(View):
     def get(self, request):
         users = User.objects.all()
-        return render(request, 'users/users.html', {'users': users})
+        return render(request, 'users/index.html', {'users': users})
 
 
 class UserFormCreate(View):
@@ -66,7 +66,7 @@ class UserFormDelete(View):
     def get(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
         user = get_object_or_404(User, id=user_id)
-        return render(request, 'users/delete.html', context={'user': user})
+        return render(request, 'users/delete.html', {'user': user})
 
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
