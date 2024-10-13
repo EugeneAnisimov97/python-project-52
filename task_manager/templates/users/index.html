@@ -1,14 +1,8 @@
 {% extends 'base.html' %}
+{% load  django_bootstrap5  %} 
 {% load i18n %}
 {% block content %}
-
-<div class="container wrapper flex-grow-1">
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{% if message.tags == 'error' %}danger{% elif message.tags == 'success' %}success{% else %}info{% endif %} alert-dismissible fade show" role="alert">{{ message }}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
-        {% endfor %}
-    {% endif %}
-    <h1 class="my-4">{% trans "Users" %}</h1>
+<h1 class="my-4">{{ head }}</h1>
 <table class="table table-striped">
 <thead>
   <tr>
@@ -36,6 +30,4 @@
   
 </tbody>
 </table>
-
-  </div>
 {% endblock %}

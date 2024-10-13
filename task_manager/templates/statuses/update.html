@@ -1,27 +1,22 @@
 {% extends 'base.html' %}
+{% load  django_bootstrap5  %} 
 {% load i18n %}
 {% block content %}
-{% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">{{ message }}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
-        {% endfor %}
-    {% endif %}
-<div class="container wrapper flex-grow-1">
-    <h1 class="my-4">{% trans "Create status" %}</h1>
-<form method="post">
-    {% csrf_token %}
-<div class="mb-3"><label class="form-label" for="id_name">{% trans "Name" %}</label>
-    <input type="text" name="name" maxlength="100" class="form-control" placeholder="{% trans "Name" %}" required="" value="{{ form.name.value|default:'' }}" id="id_name">
-</div>
-  <input class="btn btn-primary" type="submit" value="{% trans "Change" %}">
-</form>
-</div>
+<body class="d-flex flex-column min-vh-110">
+    <div class="container d-flex align-items-center justify-content-center h-90">
+        <div class="my-6">
+            <div class="card">
+
+                <h1 class="text-center mb-4">{{head}}</h1>
+
+                <form method="post" class="px-3">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% bootstrap_button content button_type="submit" button_class="btn btn-primary" %}
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
 {% endblock %}
-
-<form method="post">
-
-    <div class="mb-3">
-        <label class="form-label" for="id_name">Имя</label>
-        <input type="text" name="name" value="статус21fds" maxlength="100" class="form-control" placeholder="Имя" required="" id="id_name"></div>
-      <input class="btn btn-primary" type="submit" value="Изменить">
-  </form>

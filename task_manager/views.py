@@ -1,36 +1,27 @@
-from task_manager.forms import LoginForm
-from django.views import View
-from django.shortcuts import redirect, render
+# from task_manager.forms import LoginForm
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.views.generic import TemplateView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 
 
-class IndexView(View):
-    def get(self, request):
-        return render(request, 'index.html',)
+class IndexView(TemplateView):
+    template_name = 'index.html'
 
 
-class LoginView(View):
-    def get(self, request):
-        form = LoginForm()
-        return render(request, 'login.html', {'form': form})
-
-    def post(self, request):
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.success(request, 'Вы залогинены')
-                return redirect('index')
-            form.add_error('username', 'Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут быть чувствительны к регистру.')  # noqa: E501
-        return render(request, 'login.html', {'form': form})
+class UserLoginView(SuccessMessageMixin, LoginView):
+    template_name = 'login.html'
+    next_page = reverse_lazy('index')
+    success_message = "Вы залогинены"
+    extra_context = {
+        'head': 'Log In',
+        'content': 'Log In',
+    }
 
 
-class LogoutView(View):
-    def post(self, request):
-        logout(request)
-        messages.info(request, 'Вы разлогинены')
-        return redirect('index')
+class UserLogoutView(LogoutView):
+    next_page = reverse_lazy('index')
+    def dispatch(self, request, *args, **kwargs):
+        messages.info(request, 'Вы разлогигены')
+        return super().dispatch(request, *args, **kwargs)

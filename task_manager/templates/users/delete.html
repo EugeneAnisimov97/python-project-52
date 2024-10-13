@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
+{% load  django_bootstrap5  %} 
 {% load i18n %}
 {% block content %}
-<div class="container wrapper flex-grow-1">
-    <h1 class="my-4">{% trans "Delete user" %}</h1>
+    <h1 class="my-4">{{ head }}</h1>
 <p>{% trans "Are you sure you want to delete" %} {{user.first_name}} {{user.last_name}}</p>
 <form method="post">
 {% csrf_token %}
-<input class="btn btn-danger" type="submit" value="{% trans "Yes, delete"%}">
+{% bootstrap_button content button_type="submit" button_class="btn btn-danger" %}
 </form>
 
-  </div>
 {% endblock %}

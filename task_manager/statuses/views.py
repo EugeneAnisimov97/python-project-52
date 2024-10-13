@@ -5,65 +5,58 @@ from django.utils.decorators import method_decorator
 from task_manager.statuses.models import Status
 from task_manager.statuses.forms import StatusForm
 from django.contrib import messages
+from django.views.generic import ListView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic import (
+    CreateView, UpdateView, DeleteView
+)
+from django.urls import reverse_lazy
+from task_manager.mixins import CheckLoginMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
-# Create your views here.
-@method_decorator(login_required, name='dispatch')
-class StatusesIndex(View):
-    def get(self, request):
-        statuses = Status.objects.all()
-        return render(request, 'statuses/index.html', {'statuses': statuses})
+class StatusesIndex(ListView):
+    template_name = 'statuses/index.html'
+    model = Status
+    extra_context = {
+        'head': 'Statuses',
+    }
+    context_object_name = 'statuses'
 
 
-@method_decorator(login_required, name='dispatch')
-class StatusFormCreate(View):
-    def get(self, request):
-        form = StatusForm()
-        return render(request, 'statuses/create.html', {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = StatusForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Статус успешно создан')
-            return redirect('statuses_index')
-        return render(request, 'statuses/create.html', {'form': form})
+class StatusFormCreate(SuccessMessageMixin, CheckLoginMixin, CreateView):
+    template_name = 'statuses/create.html'
+    model = Status
+    form_class = StatusForm
+    success_url = reverse_lazy('statuses_index')
+    success_message = 'Статус успешно создан'
+    extra_context = {
+        'head': 'Create Status',
+        'content': 'Create',
+    }
 
 
-@method_decorator(login_required, name='dispatch')
-class StatusFormUpdate(View):
-    def get(self, request, *args, **kwargs):
-        status_id = kwargs.get('id')
-        status = get_object_or_404(Status, id=status_id)
-        form = StatusForm(instance=status)
-        return render(
-            request,
-            'statuses/update.html',
-            {'form': form, 'status_id': status_id}
-        )
-
-    def post(self, request, *args, **kwargs):
-        status_id = kwargs.get('id')
-        status = get_object_or_404(Status, id=status_id)
-        form = StatusForm(request.POST, instance=status)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Статус успешно изменен')
-            return redirect('statuses_index')
-        return render(request, 'statuses/create.html', {'form': form})
+class StatusFormUpdate(SuccessMessageMixin, CheckLoginMixin, UpdateView):
+    template_name = 'statuses/update.html'
+    model = Status
+    form_class = StatusForm
+    success_url = reverse_lazy('statuses_index')
+    success_message = 'Статус успешно изменен'
+    extra_context = {
+        'head': 'Change of status',
+        'content': 'Change',
+    }
 
 
-@method_decorator(login_required, name='dispatch')
-class StatusFormDelete(View):
-    def get(self, request, *args, **kwargs):
-        status_id = kwargs.get('id')
-        status = get_object_or_404(Status, id=status_id)
-        return render(request, 'statuses/delete.html', {'status': status})
-
-    def post(self, request, *args, **kwargs):
-        status_id = kwargs.get('id')
-        status = get_object_or_404(Status, id=status_id)
-        if status:  # ещё првоерку используется ли он где-то дял удаления
-            status.delete()
-            messages.success(request, 'Статус успешно удален')
-        return redirect('statuses_index')
+class StatusFormDelete(CheckLoginMixin, SuccessMessageMixin, DeleteView):
+    model = Status
+    template_name = 'statuses/delete.html'
+    success_url = reverse_lazy('statuses_index')
+    success_message = 'Статус успешно удален'
+    extra_context = {
+        'head': 'Deleting a status',
+        'content': 'Yes, delete',
+    }
+    def delete(self, request, *args, **kwargs):
+        return super().delete(request, *args, **kwargs)
+    

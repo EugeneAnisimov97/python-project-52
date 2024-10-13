@@ -93,30 +93,18 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    } if os.getenv('DJANGO_ENV') == 'development' else dj_database_url.config(
+    } 
+}
+    
+if os.getenv('DJANGO_ENV') == 'prodaction':
+    DATABASES = dj_database_url.config(
         conn_max_age=600,
         default=os.getenv('CONFIG_DATABASE_URL')
     )
-}
 
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa: E501
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',  # noqa: E501
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # noqa: E501
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa: E501
-    },
-]
 
 AUTH_USER_MODEL = 'users.User'
 # Internationalization
