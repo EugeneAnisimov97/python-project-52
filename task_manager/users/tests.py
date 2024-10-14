@@ -13,8 +13,8 @@ class UserFormTests(TestCase):
             'first_name': 'Eugene',
             'last_name': '2',
             'username': 'eugene1',
-            'password1': '123',
-            'password2': '123'
+            'password1': 'Qwas1997',
+            'password2': 'Qwas1997'
         }
         response = self.client.post(reverse('users_create'), data)
         self.assertEqual(response.status_code, 302)

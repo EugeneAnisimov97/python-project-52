@@ -15,7 +15,7 @@ from task_manager.mixins import CheckLoginMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 
 
-class StatusesIndex(ListView):
+class StatusesIndex(ListView, CheckLoginMixin):
     template_name = 'statuses/index.html'
     model = Status
     extra_context = {

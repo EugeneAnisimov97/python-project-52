@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from task_manager.users.models import User
-from task_manager.users.forms import CreateUserForm, UpdateUserForm
+from task_manager.users.forms import CreateUserForm
 from django.contrib import messages
 from django.views.generic import ListView
 from django.views.generic import (
@@ -10,6 +10,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
 from task_manager.mixins import CheckLoginMixin
+from django.contrib.auth import logout
 
 # Create your views here.
 class UsersIndex(ListView):
@@ -35,7 +36,7 @@ class UserFormCreate(SuccessMessageMixin, CreateView):
 
 class UserFormUpdate(UserPassesTestMixin, CheckLoginMixin, SuccessMessageMixin, UpdateView):
     model = User
-    form_class = UpdateUserForm
+    form_class = CreateUserForm
     template_name = 'form.html'
     success_url = reverse_lazy('users_index')
     success_message = 'Пользователь успешно изменен'
@@ -53,6 +54,7 @@ class UserFormUpdate(UserPassesTestMixin, CheckLoginMixin, SuccessMessageMixin, 
         else:
             return super().handle_no_permission()
         return redirect(self.success_url)
+
 
 
 class UserFormDelete(UserPassesTestMixin,CheckLoginMixin,SuccessMessageMixin, DeleteView):
