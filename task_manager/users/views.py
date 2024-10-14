@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from task_manager.users.models import User
-from task_manager.users.forms import CreateUserForm
+from task_manager.users.forms import CreateUserForm, UpdateUserForm
 from django.contrib import messages
 from django.views.generic import ListView
 from django.views.generic import (
@@ -22,7 +22,7 @@ class UsersIndex(ListView):
 
 
 class UserFormCreate(SuccessMessageMixin, CreateView):
-    template_name = 'users/create.html'
+    template_name = 'form.html'
     model = User
     form_class = CreateUserForm
     success_url = reverse_lazy('login')
@@ -33,25 +33,27 @@ class UserFormCreate(SuccessMessageMixin, CreateView):
     }
 
 
-class UserFormUpdate(UserPassesTestMixin, CheckLoginMixin, UpdateView):
+class UserFormUpdate(UserPassesTestMixin, CheckLoginMixin, SuccessMessageMixin, UpdateView):
     model = User
-    form_class = CreateUserForm
-    template_name = 'users/update.html'
-    success_url = 'users_index'
-    
-    def test_func(self):
-        return self.request.user == self.get_object()
-    
-    def handle_no_permission(self):
-        messages.error(self.request, 'У вас нет прав для изменения другого пользователя')
-        return redirect('users_index')
-
+    form_class = UpdateUserForm
+    template_name = 'form.html'
+    success_url = reverse_lazy('users_index')
     success_message = 'Пользователь успешно изменен'
     extra_context = {
         'head': 'Change user',
         'content': 'Change',
     }
  
+    def test_func(self):
+        return self.get_object().id == self.request.user.id
+    
+    def handle_no_permission(self):
+        if self.request.user.is_authenticated:
+            messages.error(self.request, 'У вас нет прав для изменения другого пользователя')
+        else:
+            return super().handle_no_permission()
+        return redirect(self.success_url)
+
 
 class UserFormDelete(UserPassesTestMixin,CheckLoginMixin,SuccessMessageMixin, DeleteView):
     model = User

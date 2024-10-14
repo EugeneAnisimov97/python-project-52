@@ -96,12 +96,11 @@ DATABASES = {
     } 
 }
     
-if os.getenv('DJANGO_ENV') == 'prodaction':
-    DATABASES = dj_database_url.config(
+if os.getenv('DJANGO_ENV') == 'production':
+    DATABASES['default'] = dj_database_url.config(
         conn_max_age=600,
         default=os.getenv('CONFIG_DATABASE_URL')
     )
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

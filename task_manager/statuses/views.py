@@ -25,7 +25,7 @@ class StatusesIndex(ListView):
 
 
 class StatusFormCreate(SuccessMessageMixin, CheckLoginMixin, CreateView):
-    template_name = 'statuses/create.html'
+    template_name = 'form.html'
     model = Status
     form_class = StatusForm
     success_url = reverse_lazy('statuses_index')
@@ -37,7 +37,7 @@ class StatusFormCreate(SuccessMessageMixin, CheckLoginMixin, CreateView):
 
 
 class StatusFormUpdate(SuccessMessageMixin, CheckLoginMixin, UpdateView):
-    template_name = 'statuses/update.html'
+    template_name = 'form.html'
     model = Status
     form_class = StatusForm
     success_url = reverse_lazy('statuses_index')
