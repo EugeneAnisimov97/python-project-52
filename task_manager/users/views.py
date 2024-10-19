@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from task_manager.users.models import User
-from task_manager.users.forms import CreateUserForm
+from task_manager.users.forms import CreateUserForm, UpdateUserForm
 from django.contrib import messages
 from django.views.generic import ListView
 from django.views.generic import (
@@ -13,7 +13,7 @@ from task_manager.mixins import CheckLoginMixin
 from django.contrib.auth import logout
 
 # Create your views here.
-class UsersIndex(ListView):
+class UsersIndexView(ListView):
     template_name = 'users/index.html'
     model = User
     extra_context = {
@@ -36,7 +36,7 @@ class UserFormCreate(SuccessMessageMixin, CreateView):
 
 class UserFormUpdate(UserPassesTestMixin, CheckLoginMixin, SuccessMessageMixin, UpdateView):
     model = User
-    form_class = CreateUserForm
+    form_class = UpdateUserForm
     template_name = 'form.html'
     success_url = reverse_lazy('users_index')
     success_message = 'Пользователь успешно изменен'
@@ -47,13 +47,6 @@ class UserFormUpdate(UserPassesTestMixin, CheckLoginMixin, SuccessMessageMixin, 
  
     def test_func(self):
         return self.get_object().id == self.request.user.id
-    
-    def handle_no_permission(self):
-        if self.request.user.is_authenticated:
-            messages.error(self.request, 'У вас нет прав для изменения другого пользователя')
-        else:
-            return super().handle_no_permission()
-        return redirect(self.success_url)
 
 
 
@@ -71,12 +64,6 @@ class UserFormDelete(UserPassesTestMixin,CheckLoginMixin,SuccessMessageMixin, De
         user = self.get_object()
         return self.request.user == user
     
-    def handle_no_permission(self):
-        if self.request.user.is_authenticated:
-            messages.error(self.request, 'У вас нет прав для удаления другого пользователя')
-        else:
-            return super().handle_no_permission()
-        return redirect(self.success_url)
 
     def delete(self, request, *args, **kwargs):
         return super().delete(request, *args, **kwargs)

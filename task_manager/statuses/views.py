@@ -1,10 +1,5 @@
-from django.views import View
-from django.shortcuts import get_object_or_404, redirect, render
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from task_manager.statuses.models import Status
 from task_manager.statuses.forms import StatusForm
-from django.contrib import messages
 from django.views.generic import ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import (
@@ -12,10 +7,9 @@ from django.views.generic import (
 )
 from django.urls import reverse_lazy
 from task_manager.mixins import CheckLoginMixin
-from django.contrib.auth.mixins import UserPassesTestMixin
 
 
-class StatusesIndex(ListView, CheckLoginMixin):
+class StatusesIndex(CheckLoginMixin, ListView):
     template_name = 'statuses/index.html'
     model = Status
     extra_context = {
@@ -23,8 +17,7 @@ class StatusesIndex(ListView, CheckLoginMixin):
     }
     context_object_name = 'statuses'
 
-
-class StatusFormCreate(SuccessMessageMixin, CheckLoginMixin, CreateView):
+class StatusCreateView(SuccessMessageMixin, CheckLoginMixin, CreateView):
     template_name = 'form.html'
     model = Status
     form_class = StatusForm
@@ -36,7 +29,7 @@ class StatusFormCreate(SuccessMessageMixin, CheckLoginMixin, CreateView):
     }
 
 
-class StatusFormUpdate(SuccessMessageMixin, CheckLoginMixin, UpdateView):
+class StatusUpdateView(SuccessMessageMixin, CheckLoginMixin, UpdateView):
     template_name = 'form.html'
     model = Status
     form_class = StatusForm
@@ -48,7 +41,7 @@ class StatusFormUpdate(SuccessMessageMixin, CheckLoginMixin, UpdateView):
     }
 
 
-class StatusFormDelete(CheckLoginMixin, SuccessMessageMixin, DeleteView):
+class StatusDeleteView(CheckLoginMixin, SuccessMessageMixin, DeleteView):
     model = Status
     template_name = 'statuses/delete.html'
     success_url = reverse_lazy('statuses_index')
@@ -57,6 +50,3 @@ class StatusFormDelete(CheckLoginMixin, SuccessMessageMixin, DeleteView):
         'head': 'Deleting a status',
         'content': 'Yes, delete',
     }
-    def delete(self, request, *args, **kwargs):
-        return super().delete(request, *args, **kwargs)
-    

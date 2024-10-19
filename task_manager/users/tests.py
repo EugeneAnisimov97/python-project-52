@@ -27,8 +27,8 @@ class UserFormTests(TestCase):
                 'first_name': '1',
                 'last_name': '2',
                 'username': 'test2',
-                'password1': '124',
-                'password2': '124'
+                'password1': 'Qwas1997',
+                'password2': 'Qwas1997'
         })
         self.assertEqual(response.status_code, 302)
         self.user.refresh_from_db()
