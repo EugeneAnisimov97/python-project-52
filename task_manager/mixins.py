@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.shortcuts import redirect
-
+from django.db.models import ProtectedError
 
 class CheckLoginMixin(LoginRequiredMixin):
     def dispatch(self, request, *args, **kwargs):
@@ -20,3 +20,14 @@ class CustomPassesMixin(UserPassesTestMixin):
         message = _("You don't have permissions to modify another user.")
         messages.error(self.request, message)
         return redirect('users_index')
+
+class ProtectDeletingMixin:
+    error_message = None
+    redirect_url = None
+    
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(request, self.error_message)
+            return redirect(self.redirect_url)

@@ -8,11 +8,12 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = [
             'name', 'description',
-            'status', 'executor'
+            'status', 'executor', 'labels'
         ]
         labels = {
             'name': 'Имя',
             'description': 'Описание',
             'status': 'Статус',
             'executor': 'Исполнитель',
+            'labels': 'Метки'
         }
