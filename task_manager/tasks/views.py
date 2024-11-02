@@ -16,7 +16,7 @@ class TasksIndex(CheckLoginMixin, ListView):
     template_name = 'tasks/index.html'
     model = Task
     extra_context = {
-        'head': 'Tasks',
+        'head': _('Tasks'),
     }
     context_object_name = 'tasks'
 
@@ -28,8 +28,8 @@ class TaskCreateView(SuccessMessageMixin, CheckLoginMixin, CreateView):
     success_url = reverse_lazy('tasks_index')
     success_message = _('Task successfully created')
     extra_context = {
-        'head': 'Create task',
-        'content': 'Create',
+        'head': _('Create task'),
+        'content': _('Create'),
     }
 
     def form_valid(self, form):
@@ -43,8 +43,8 @@ class TaskUpdateView(SuccessMessageMixin, CheckLoginMixin, UpdateView):
     success_url = reverse_lazy('tasks_index')
     success_message = _('Task successfully modified')
     extra_context = {
-        'head': 'Change task',
-        'content': 'Change',
+        'head': _('Change task'),
+        'content': _('Change'),
     }
 
 class TaskDeleteView(CheckLoginMixin, SuccessMessageMixin, DeleteView):
@@ -53,8 +53,8 @@ class TaskDeleteView(CheckLoginMixin, SuccessMessageMixin, DeleteView):
     success_url = reverse_lazy('tasks_index')
     success_message = _('Task successfully deleted')
     extra_context = {
-        'head': 'Delete task',
-        'content': 'Yes, delete',
+        'head': _('Delete task'),
+        'content': _('Yes, delete'),
     }
 
     def dispatch(self, request, *args, **kwargs):

@@ -13,7 +13,7 @@ class StatusesIndex(CheckLoginMixin, ListView):
     template_name = 'statuses/index.html'
     model = Status
     extra_context = {
-        'head': 'Statuses',
+        'head': _('Statuses'),
     }
     context_object_name = 'statuses'
 
@@ -24,8 +24,8 @@ class StatusCreateView(SuccessMessageMixin, CheckLoginMixin, CreateView):
     success_url = reverse_lazy('statuses_index')
     success_message = _('Status successfully created')
     extra_context = {
-        'head': 'Create Status',
-        'content': 'Create',
+        'head': _('Create Status'),
+        'content': _('Create'),
     }
 
 
@@ -36,8 +36,8 @@ class StatusUpdateView(SuccessMessageMixin, CheckLoginMixin, UpdateView):
     success_url = reverse_lazy('statuses_index')
     success_message = _('Status changed successfully')
     extra_context = {
-        'head': 'Change of status',
-        'content': 'Change',
+        'head': _('Change of status'),
+        'content': _('Change'),
     }
 
 
@@ -47,6 +47,6 @@ class StatusDeleteView(CheckLoginMixin, SuccessMessageMixin, DeleteView):
     success_url = reverse_lazy('statuses_index')
     success_message = _('Status successfully deleted')
     extra_context = {
-        'head': 'Deleting a status',
-        'content': 'Yes, delete',
+        'head': _('Deleting a status'),
+        'content': _('Yes, delete'),
     }

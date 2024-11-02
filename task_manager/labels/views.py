@@ -18,7 +18,7 @@ class LabelIndex(CheckLoginMixin, ListView):
     template_name = 'labels/index.html'
     model = Label
     extra_context = {
-        'head': 'Labels',
+        'head': _('Labels'),
     }
     context_object_name = 'labels'
 
@@ -30,8 +30,8 @@ class LabelCreateView(SuccessMessageMixin, CheckLoginMixin, CreateView):
     success_url = reverse_lazy('labels_index')
     success_message = _('Label successfully created')
     extra_context = {
-        'head': 'Create Label',
-        'content': 'Create',
+        'head': _('Create Label'),
+        'content': _('Create'),
     }
 
 
@@ -42,8 +42,8 @@ class LabelUpdateView(SuccessMessageMixin, CheckLoginMixin, UpdateView):
     success_url = reverse_lazy('labels_index')
     success_message = _('Label changed successfully')
     extra_context = {
-        'head': 'Change of label',
-        'content': 'Change',
+        'head': _('Change of label'),
+        'content': _('Change'),
     }
 
 
@@ -55,8 +55,8 @@ class LabelDeleteView(CheckLoginMixin, SuccessMessageMixin, ProtectDeletingMixin
     error_message = _('Cannot delete this label because it is associated with a task.')
     redirect_url = 'labels_index'
     extra_context = {
-        'head': 'Deleting a label',
-        'content': 'Yes, delete',
+        'head': _('Deleting a label'),
+        'content': _('Yes, delete'),
     }
 
 

@@ -15,7 +15,7 @@ class UsersIndexView(ListView):
     template_name = 'users/index.html'
     model = User
     extra_context = {
-        'head': 'Users',
+        'head': _('Users'),
     }
     context_object_name = 'users'
 
@@ -27,8 +27,8 @@ class UserFormCreate(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('login')
     success_message = _('User registered successfully')
     extra_context = {
-        'head': 'Registarion',
-        'content': 'Sing-up',
+        'head': _('Registarion'),
+        'content': _('Sing-up'),
     }
 
 
@@ -39,8 +39,8 @@ class UserFormUpdate(CustomPassesMixin, CheckLoginMixin, SuccessMessageMixin, Up
     success_url = reverse_lazy('users_index')
     success_message = _('User successfully changed')
     extra_context = {
-        'head': 'Change user',
-        'content': 'Change',
+        'head': _('Change user'),
+        'content': _('Change'),
     }
  
     def test_func(self):
@@ -54,8 +54,8 @@ class UserFormDelete(CustomPassesMixin,CheckLoginMixin,SuccessMessageMixin, Dele
     success_url = reverse_lazy('users_index')
     success_message = _('User successfully deleted')
     extra_context = {
-        'head': 'Deleting a user',
-        'content': 'Yes, delete',
+        'head': _('Deleting a user'),
+        'content': _('Yes, delete'),
     }
     
     def test_func(self):
