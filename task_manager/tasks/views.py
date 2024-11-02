@@ -6,9 +6,10 @@ from django.views.generic import (
     CreateView, UpdateView, DeleteView, DetailView
 )
 from django.urls import reverse_lazy
-from task_manager.mixins import CheckLoginMixin
+from task_manager.mixins import CheckLoginMixin, CustomPassesMixin
 from django.contrib import messages
 from django.shortcuts import redirect
+from django.utils.translation import gettext_lazy as _
 
 # Create your views here.
 class TasksIndex(CheckLoginMixin, ListView):
@@ -25,11 +26,12 @@ class TaskCreateView(SuccessMessageMixin, CheckLoginMixin, CreateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy('tasks_index')
-    success_message = 'Задача успешно создана'
+    success_message = _('Task successfully created')
     extra_context = {
         'head': 'Create task',
         'content': 'Create',
     }
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
@@ -39,25 +41,28 @@ class TaskUpdateView(SuccessMessageMixin, CheckLoginMixin, UpdateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy('tasks_index')
-    success_message = 'Задача успешно изменена'
+    success_message = _('Task successfully modified')
     extra_context = {
         'head': 'Change task',
         'content': 'Change',
     }
+
 class TaskDeleteView(CheckLoginMixin, SuccessMessageMixin, DeleteView):
     template_name = 'tasks/delete.html'
     model = Task
     success_url = reverse_lazy('tasks_index')
-    success_message = 'Задача успешно удалена'
+    success_message = _('Task successfully deleted')
     extra_context = {
         'head': 'Delete task',
         'content': 'Yes, delete',
     }
+
     def dispatch(self, request, *args, **kwargs):
         if self.get_object().author != request.user:
-            messages.error(request, "Задачу может удалить только ее автор")
+            messages.error(request, _("A task can only be deleted by its author."))
             return redirect('tasks_index')
         return super().dispatch(request, *args, **kwargs)
+
 class TaskDetailView(CheckLoginMixin, DetailView):
     model = Task
     template_name = 'tasks/detail.html'

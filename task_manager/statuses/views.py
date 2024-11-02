@@ -7,7 +7,7 @@ from django.views.generic import (
 )
 from django.urls import reverse_lazy
 from task_manager.mixins import CheckLoginMixin
-
+from django.utils.translation import gettext_lazy as _
 
 class StatusesIndex(CheckLoginMixin, ListView):
     template_name = 'statuses/index.html'
@@ -22,7 +22,7 @@ class StatusCreateView(SuccessMessageMixin, CheckLoginMixin, CreateView):
     model = Status
     form_class = StatusForm
     success_url = reverse_lazy('statuses_index')
-    success_message = 'Статус успешно создан'
+    success_message = _('Status successfully created')
     extra_context = {
         'head': 'Create Status',
         'content': 'Create',
@@ -34,7 +34,7 @@ class StatusUpdateView(SuccessMessageMixin, CheckLoginMixin, UpdateView):
     model = Status
     form_class = StatusForm
     success_url = reverse_lazy('statuses_index')
-    success_message = 'Статус успешно изменен'
+    success_message = _('Status changed successfully')
     extra_context = {
         'head': 'Change of status',
         'content': 'Change',
@@ -45,7 +45,7 @@ class StatusDeleteView(CheckLoginMixin, SuccessMessageMixin, DeleteView):
     model = Status
     template_name = 'statuses/delete.html'
     success_url = reverse_lazy('statuses_index')
-    success_message = 'Статус успешно удален'
+    success_message = _('Status successfully deleted')
     extra_context = {
         'head': 'Deleting a status',
         'content': 'Yes, delete',
