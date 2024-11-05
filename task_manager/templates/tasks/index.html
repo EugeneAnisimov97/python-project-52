@@ -3,7 +3,16 @@
 {% load i18n %}
 {% block content %}
 <h1 class="text-center mb-4">{{head}}</h1>
-        
+
+<div class="card my-4">
+    <div class="card-body">
+        <form method="get">
+            {% bootstrap_form filter.form %}
+            {% bootstrap_button content button_type="submit" button_class="btn btn-primary" %}
+        </form>
+    </div>
+</div>
+
 <a class="btn btn-primary mb-3" href="{% url 'tasks_create' %}">{% trans "Create task" %}</a>
   <table class="table table-striped">
     <thead>

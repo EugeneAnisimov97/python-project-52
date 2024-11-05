@@ -10,13 +10,17 @@ from task_manager.mixins import CheckLoginMixin, CustomPassesMixin
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
+from task_manager.tasks.filter import TaskFilter
+from django_filters.views import FilterView
 
 # Create your views here.
-class TasksIndex(CheckLoginMixin, ListView):
+class TasksIndex(CheckLoginMixin, FilterView):
     template_name = 'tasks/index.html'
     model = Task
+    filterset_class = TaskFilter
     extra_context = {
         'head': _('Tasks'),
+        'content': _('Show'),
     }
     context_object_name = 'tasks'
 
