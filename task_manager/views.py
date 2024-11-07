@@ -27,7 +27,3 @@ class UserLogoutView(LogoutView):
     def dispatch(self, request, *args, **kwargs):
         messages.info(request, _('You are logged out'))
         return super().dispatch(request, *args, **kwargs)
-
-def index(request):
-    divisionby_zero = 1 / 0
-    return HttpResponse("error")

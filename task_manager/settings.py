@@ -161,7 +161,7 @@ SHELL_PLUS_PRINT_SQL = True
 #Rollbar
 
 ROLLBAR = {
-    'access_token': 'a7be1eac39b0496393da02aa9967c491',
+    'access_token': os.getenv('access_token'),
     'environment': 'development' if DEBUG else 'production',
     'code_version': '1.0',
     'root': BASE_DIR,

@@ -17,11 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from task_manager import views
-from .views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('error/', index),
     path('', views.IndexView.as_view(), name='index'),
     path('login/', views.UserLoginView.as_view(), name='login'),
     path('logout/', views.UserLogoutView.as_view(), name='logout'),
