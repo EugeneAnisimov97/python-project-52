@@ -58,11 +58,3 @@ class LabelDeleteView(CheckLoginMixin, SuccessMessageMixin, ProtectDeletingMixin
         'head': _('Deleting a label'),
         'content': _('Yes, delete'),
     }
-
-
-    # def delete(self, request, *args, **kwargs):
-    #     label = self.get_object()
-    #     if TasksRelationLabels.objects.filter(label=label).exists():
-    #         messages.error(request, _('Cannot delete this label because it is associated with a task.'))
-    #         return redirect('labels_index')
-    #     return super().delete(request, *args, **kwargs)

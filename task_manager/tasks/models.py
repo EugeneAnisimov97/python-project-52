@@ -19,4 +19,3 @@ class Task(models.Model):
 class TasksRelationLabels(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     label = models.ForeignKey(Label, on_delete=models.PROTECT)
-    created_at = models.DateTimeField(auto_now_add=True)

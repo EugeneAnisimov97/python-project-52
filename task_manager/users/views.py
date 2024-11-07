@@ -27,7 +27,7 @@ class UserFormCreate(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('login')
     success_message = _('User registered successfully')
     extra_context = {
-        'head': _('Registarion'),
+        'head': _('Sign-up'),
         'content': _('Sing-up'),
     }
 
@@ -42,10 +42,6 @@ class UserFormUpdate(CustomPassesMixin, CheckLoginMixin, SuccessMessageMixin, Up
         'head': _('Change user'),
         'content': _('Change'),
     }
- 
-    def test_func(self):
-        return self.get_object().id == self.request.user.id
-
 
 
 class UserFormDelete(CustomPassesMixin,CheckLoginMixin,SuccessMessageMixin, DeleteView):
@@ -57,11 +53,4 @@ class UserFormDelete(CustomPassesMixin,CheckLoginMixin,SuccessMessageMixin, Dele
         'head': _('Deleting a user'),
         'content': _('Yes, delete'),
     }
-    
-    def test_func(self):
-        user = self.get_object()
-        return self.request.user == user
-    
 
-    def delete(self, request, *args, **kwargs):
-        return super().delete(request, *args, **kwargs)

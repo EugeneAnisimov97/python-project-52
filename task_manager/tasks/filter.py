@@ -18,14 +18,14 @@ class TaskFilter(django_filters.FilterSet):
         required=False
     )
     
-    your_task = django_filters.BooleanFilter(
-        method='show_your_task',
+    self_task = django_filters.BooleanFilter(
+        method='show_self_task',
         widget=forms.CheckboxInput,
-        label=_('Only your tasks'),
+        label=_('Only self tasks'),
     )
     
-    def show_your_task(self, queryset, arg, value):
-        if self.request.user and value:
+    def show_self_task(self, queryset, arg, value):
+        if value:
             return queryset.filter(author=self.request.user)
         return queryset
     

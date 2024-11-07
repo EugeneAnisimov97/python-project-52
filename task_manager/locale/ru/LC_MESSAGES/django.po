@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-02 23:11+0200\n"
+"POT-Creation-Date: 2024-11-07 19:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgid "Create Label"
 msgstr "Создать метку"
 
 #: task_manager/labels/views.py:34 task_manager/statuses/views.py:28
-#: task_manager/tasks/views.py:32
+#: task_manager/tasks/views.py:36
 msgid "Create"
 msgstr "Создать"
 
@@ -47,10 +47,10 @@ msgid "Change of label"
 msgstr "Изменить метку"
 
 #: task_manager/labels/views.py:46 task_manager/statuses/views.py:40
-#: task_manager/tasks/views.py:47 task_manager/templates/labels/index.html:24
+#: task_manager/tasks/views.py:51 task_manager/templates/labels/index.html:24
 #: task_manager/templates/statuses/index.html:24
 #: task_manager/templates/tasks/detail.html:44
-#: task_manager/templates/tasks/index.html:30
+#: task_manager/templates/tasks/index.html:39
 #: task_manager/templates/users/index.html:24 task_manager/users/views.py:43
 msgid "Change"
 msgstr "Изменить"
@@ -68,7 +68,7 @@ msgid "Deleting a label"
 msgstr "Удалить метку"
 
 #: task_manager/labels/views.py:59 task_manager/statuses/views.py:51
-#: task_manager/tasks/views.py:57 task_manager/users/views.py:58
+#: task_manager/tasks/views.py:61 task_manager/users/views.py:54
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
@@ -108,35 +108,48 @@ msgstr "Статус успешно удален"
 msgid "Deleting a status"
 msgstr "Удалить статус"
 
-#: task_manager/tasks/views.py:19 task_manager/templates/base.html:33
+#: task_manager/tasks/filter.py:12 task_manager/templates/tasks/detail.html:21
+#: task_manager/templates/tasks/index.html:24
+msgid "Executor"
+msgstr "Исполнитель"
+
+#: task_manager/tasks/filter.py:24
+msgid "Only self tasks"
+msgstr "Только свои задачи"
+
+#: task_manager/tasks/views.py:22 task_manager/templates/base.html:33
 msgid "Tasks"
 msgstr "Задачи"
 
-#: task_manager/tasks/views.py:29
+#: task_manager/tasks/views.py:23
+msgid "Show"
+msgstr "Показать"
+
+#: task_manager/tasks/views.py:33
 msgid "Task successfully created"
 msgstr "Задача успешно создана"
 
-#: task_manager/tasks/views.py:31 task_manager/templates/tasks/index.html:7
+#: task_manager/tasks/views.py:35 task_manager/templates/tasks/index.html:16
 msgid "Create task"
 msgstr "Создать задачу"
 
-#: task_manager/tasks/views.py:44
+#: task_manager/tasks/views.py:48
 msgid "Task successfully modified"
 msgstr "Задача успешно изменена"
 
-#: task_manager/tasks/views.py:46
+#: task_manager/tasks/views.py:50
 msgid "Change task"
 msgstr "Изменить задачу"
 
-#: task_manager/tasks/views.py:54
+#: task_manager/tasks/views.py:58
 msgid "Task successfully deleted"
 msgstr "Задача успешно удалена"
 
-#: task_manager/tasks/views.py:56
+#: task_manager/tasks/views.py:60
 msgid "Delete task"
 msgstr "Удалить задачу"
 
-#: task_manager/tasks/views.py:62
+#: task_manager/tasks/views.py:66
 msgid "A task can only be deleted by its author."
 msgstr "Задачу может удалить только её автор."
 
@@ -160,7 +173,7 @@ msgstr "Выход"
 msgid "Login"
 msgstr "Вход"
 
-#: task_manager/templates/base.html:48
+#: task_manager/templates/base.html:48 task_manager/users/views.py:30
 msgid "Sign-up"
 msgstr "Зарегистрироваться"
 
@@ -186,20 +199,20 @@ msgstr "Создать метку"
 
 #: task_manager/templates/labels/index.html:11
 #: task_manager/templates/statuses/index.html:11
-#: task_manager/templates/tasks/index.html:11
+#: task_manager/templates/tasks/index.html:20
 #: task_manager/templates/users/index.html:9
 msgid "ID"
 msgstr "ID"
 
 #: task_manager/templates/labels/index.html:12
 #: task_manager/templates/statuses/index.html:12
-#: task_manager/templates/tasks/index.html:12
+#: task_manager/templates/tasks/index.html:21
 msgid "Name"
 msgstr "Имя"
 
 #: task_manager/templates/labels/index.html:13
 #: task_manager/templates/statuses/index.html:13
-#: task_manager/templates/tasks/index.html:16
+#: task_manager/templates/tasks/index.html:25
 #: task_manager/templates/users/index.html:12
 msgid "Creation date"
 msgstr "Дата создания"
@@ -207,7 +220,7 @@ msgstr "Дата создания"
 #: task_manager/templates/labels/index.html:26
 #: task_manager/templates/statuses/index.html:26
 #: task_manager/templates/tasks/detail.html:45
-#: task_manager/templates/tasks/index.html:32
+#: task_manager/templates/tasks/index.html:41
 #: task_manager/templates/users/index.html:26
 msgid "Delete"
 msgstr "Удалить"
@@ -230,17 +243,12 @@ msgid "Task view"
 msgstr "Просмотр задачи"
 
 #: task_manager/templates/tasks/detail.html:17
-#: task_manager/templates/tasks/index.html:14
+#: task_manager/templates/tasks/index.html:23
 msgid "Author"
 msgstr "Автор"
 
-#: task_manager/templates/tasks/detail.html:21
-#: task_manager/templates/tasks/index.html:15
-msgid "Executor"
-msgstr "Исполнитель"
-
 #: task_manager/templates/tasks/detail.html:25
-#: task_manager/templates/tasks/index.html:13
+#: task_manager/templates/tasks/index.html:22
 msgid "Status"
 msgstr "Статус"
 
@@ -260,12 +268,6 @@ msgstr "Полное имя"
 msgid "User registered successfully"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: task_manager/users/views.py:30
-#, fuzzy
-#| msgid "Registration"
-msgid "Registarion"
-msgstr "Регистрация"
-
 #: task_manager/users/views.py:31
 msgid "Sing-up"
 msgstr "Зарегистрироваться"
@@ -278,11 +280,11 @@ msgstr "Пользователь успешно изменен"
 msgid "Change user"
 msgstr "Изменить пользователя"
 
-#: task_manager/users/views.py:55
+#: task_manager/users/views.py:51
 msgid "User successfully deleted"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/users/views.py:57
+#: task_manager/users/views.py:53
 msgid "Deleting a user"
 msgstr "Удалить пользователя"
 
