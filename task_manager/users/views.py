@@ -7,7 +7,7 @@ from django.views.generic import (
 )
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from task_manager.mixins import CheckLoginMixin, CustomPassesMixin
+from task_manager.mixins import CheckLoginMixin, PermissionChangeUserMixin, ProtectDeletingMixin
 from django.utils.translation import gettext_lazy as _
 
 # Create your views here.
@@ -28,11 +28,11 @@ class UserFormCreate(SuccessMessageMixin, CreateView):
     success_message = _('User registered successfully')
     extra_context = {
         'head': _('Sign-up'),
-        'content': _('Sing-up'),
+        'button_text': _('Sing-up'),
     }
 
 
-class UserFormUpdate(CustomPassesMixin, CheckLoginMixin, SuccessMessageMixin, UpdateView):
+class UserFormUpdate(PermissionChangeUserMixin, CheckLoginMixin, SuccessMessageMixin, UpdateView):
     model = User
     form_class = UpdateUserForm
     template_name = 'form.html'
@@ -40,17 +40,19 @@ class UserFormUpdate(CustomPassesMixin, CheckLoginMixin, SuccessMessageMixin, Up
     success_message = _('User successfully changed')
     extra_context = {
         'head': _('Change user'),
-        'content': _('Change'),
+        'button_text': _('Change'),
     }
 
 
-class UserFormDelete(CustomPassesMixin,CheckLoginMixin,SuccessMessageMixin, DeleteView):
+class UserFormDelete(PermissionChangeUserMixin,CheckLoginMixin,SuccessMessageMixin, ProtectDeletingMixin, DeleteView):
     model = User
-    template_name = 'users/delete.html'
+    template_name = 'delete.html'
     success_url = reverse_lazy('users_index')
     success_message = _('User successfully deleted')
+    error_message = _('Cannot delete a user because it is in use')
+    redirect_url = 'users_index'
     extra_context = {
         'head': _('Deleting a user'),
-        'content': _('Yes, delete'),
+        'button_text': _('Yes, delete'),
     }
 

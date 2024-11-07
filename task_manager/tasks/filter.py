@@ -12,9 +12,13 @@ class TaskFilter(django_filters.FilterSet):
         label = _('Executor'),
         required=False
     )
-    labels = django_filters.ModelChoiceFilter(
+    labels = django_filters.ModelMultipleChoiceFilter(
         queryset=Label.objects.all(),
-        label = ('Labels'),
+        label = _('Labels'),
+        widget=forms.CheckboxSelectMultiple(attrs={
+            'class': 'form-control', 
+            'style': 'max-height: 150px; overflow-y: auto;'
+        }),
         required=False
     )
     

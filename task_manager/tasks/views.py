@@ -1,12 +1,11 @@
 from task_manager.tasks.models import Task
 from task_manager.tasks.forms import TaskForm
-from django.views.generic import ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import (
     CreateView, UpdateView, DeleteView, DetailView
 )
 from django.urls import reverse_lazy
-from task_manager.mixins import CheckLoginMixin, CustomPassesMixin
+from task_manager.mixins import CheckLoginMixin, ProtectDeletingMixin
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
@@ -20,7 +19,7 @@ class TasksIndex(CheckLoginMixin, FilterView):
     filterset_class = TaskFilter
     extra_context = {
         'head': _('Tasks'),
-        'content': _('Show'),
+        'button_text': _('Show'),
     }
     context_object_name = 'tasks'
 
@@ -33,7 +32,7 @@ class TaskCreateView(SuccessMessageMixin, CheckLoginMixin, CreateView):
     success_message = _('Task successfully created')
     extra_context = {
         'head': _('Create task'),
-        'content': _('Create'),
+        'button_text': _('Create'),
     }
 
     def form_valid(self, form):
@@ -48,17 +47,17 @@ class TaskUpdateView(SuccessMessageMixin, CheckLoginMixin, UpdateView):
     success_message = _('Task successfully modified')
     extra_context = {
         'head': _('Change task'),
-        'content': _('Change'),
+        'button_text': _('Change'),
     }
 
-class TaskDeleteView(CheckLoginMixin, SuccessMessageMixin, DeleteView):
-    template_name = 'tasks/delete.html'
+class TaskDeleteView(CheckLoginMixin, SuccessMessageMixin, ProtectDeletingMixin, DeleteView):
+    template_name = 'delete.html'
     model = Task
     success_url = reverse_lazy('tasks_index')
     success_message = _('Task successfully deleted')
     extra_context = {
         'head': _('Delete task'),
-        'content': _('Yes, delete'),
+        'button_text': _('Yes, delete'),
     }
 
     def dispatch(self, request, *args, **kwargs):

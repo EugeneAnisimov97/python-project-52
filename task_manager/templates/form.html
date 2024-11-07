@@ -12,7 +12,8 @@
                 <form method="post" class="px-3">
                     {% csrf_token %}
                     {% bootstrap_form form %}
-                    {% bootstrap_button content button_type="submit" button_class="btn btn-primary" %}
+                    
+                    {% bootstrap_button button_text button_type="submit" button_class="btn btn-primary" %}
                 </form>
             </div>
         </div>

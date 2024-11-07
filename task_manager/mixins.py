@@ -12,7 +12,7 @@ class CheckLoginMixin(LoginRequiredMixin):
             return redirect('login')
         return super().dispatch(request, *args, **kwargs)
         
-class CustomPassesMixin(UserPassesTestMixin):
+class PermissionChangeUserMixin(UserPassesTestMixin):
     def test_func(self):
             return self.get_object().id == self.request.user.id
         

@@ -10,10 +10,6 @@ class CreateUserForm(UserCreationForm):
             'first_name', 'last_name',
             'username', 'password1', 'password2'
         ]
-        labels = {
-            'first_name': 'Имя',
-            'last_name': 'Фамилия',
-        }
 
 class UpdateUserForm(CreateUserForm):
     def clean_username(self):

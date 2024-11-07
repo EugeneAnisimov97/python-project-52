@@ -66,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -156,3 +157,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # print SQL queries in shell_plus
 
 SHELL_PLUS_PRINT_SQL = True
+
+#Rollbar
+
+ROLLBAR = {
+    'access_token': 'a7be1eac39b0496393da02aa9967c491',
+    'environment': 'development' if DEBUG else 'production',
+    'code_version': '1.0',
+    'root': BASE_DIR,
+}

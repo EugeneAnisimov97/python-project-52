@@ -6,7 +6,7 @@ from django.views.generic import (
     CreateView, UpdateView, DeleteView
 )
 from django.urls import reverse_lazy
-from task_manager.mixins import CheckLoginMixin
+from task_manager.mixins import CheckLoginMixin, ProtectDeletingMixin
 from django.utils.translation import gettext_lazy as _
 
 class StatusesIndex(CheckLoginMixin, ListView):
@@ -25,7 +25,7 @@ class StatusCreateView(SuccessMessageMixin, CheckLoginMixin, CreateView):
     success_message = _('Status successfully created')
     extra_context = {
         'head': _('Create Status'),
-        'content': _('Create'),
+        'button_text': _('Create'),
     }
 
 
@@ -37,16 +37,18 @@ class StatusUpdateView(SuccessMessageMixin, CheckLoginMixin, UpdateView):
     success_message = _('Status changed successfully')
     extra_context = {
         'head': _('Change of status'),
-        'content': _('Change'),
+        'button_text': _('Change'),
     }
 
 
-class StatusDeleteView(CheckLoginMixin, SuccessMessageMixin, DeleteView):
+class StatusDeleteView(CheckLoginMixin, SuccessMessageMixin, ProtectDeletingMixin, DeleteView):
     model = Status
-    template_name = 'statuses/delete.html'
+    template_name = 'delete.html'
     success_url = reverse_lazy('statuses_index')
     success_message = _('Status successfully deleted')
+    error_message = _('Cannot delete this status because it is associated with a task.')
+    redirect_url = 'statuses_index'
     extra_context = {
         'head': _('Deleting a status'),
-        'content': _('Yes, delete'),
+        'button_text': _('Yes, delete'),
     }
