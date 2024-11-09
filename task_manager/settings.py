@@ -97,9 +97,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    } 
+    }
 }
-    
+
 if os.getenv('DJANGO_ENV') == 'production':
     DATABASES['default'] = dj_database_url.config(
         conn_max_age=600,
@@ -158,7 +158,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SHELL_PLUS_PRINT_SQL = True
 
-#Rollbar
+# Rollbar
 
 ROLLBAR = {
     'access_token': os.getenv('access_token'),

@@ -12,6 +12,7 @@ from django.utils.translation import gettext_lazy as _
 from task_manager.tasks.filter import TaskFilter
 from django_filters.views import FilterView
 
+
 # Create your views here.
 class TasksIndex(CheckLoginMixin, FilterView):
     template_name = 'tasks/index.html'
@@ -38,7 +39,8 @@ class TaskCreateView(SuccessMessageMixin, CheckLoginMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-    
+
+
 class TaskUpdateView(SuccessMessageMixin, CheckLoginMixin, UpdateView):
     template_name = 'form.html'
     model = Task
@@ -50,7 +52,11 @@ class TaskUpdateView(SuccessMessageMixin, CheckLoginMixin, UpdateView):
         'button_text': _('Change'),
     }
 
-class TaskDeleteView(CheckLoginMixin, SuccessMessageMixin, ProtectDeletingMixin, DeleteView):
+
+class TaskDeleteView(CheckLoginMixin,
+                     SuccessMessageMixin,
+                     ProtectDeletingMixin,
+                     DeleteView):
     template_name = 'delete.html'
     model = Task
     success_url = reverse_lazy('tasks_index')
@@ -62,9 +68,13 @@ class TaskDeleteView(CheckLoginMixin, SuccessMessageMixin, ProtectDeletingMixin,
 
     def dispatch(self, request, *args, **kwargs):
         if self.get_object().author != request.user:
-            messages.error(request, _("A task can only be deleted by its author."))
+            messages.error(
+                request,
+                _("A task can only be deleted by its author.")
+            )
             return redirect('tasks_index')
         return super().dispatch(request, *args, **kwargs)
+
 
 class TaskDetailView(CheckLoginMixin, DetailView):
     model = Task

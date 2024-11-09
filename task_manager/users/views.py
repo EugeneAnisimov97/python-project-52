@@ -1,4 +1,3 @@
-from django.shortcuts import redirect
 from task_manager.users.models import User
 from task_manager.users.forms import CreateUserForm, UpdateUserForm
 from django.views.generic import ListView
@@ -7,8 +6,11 @@ from django.views.generic import (
 )
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from task_manager.mixins import CheckLoginMixin, PermissionChangeUserMixin, ProtectDeletingMixin
+from task_manager.mixins import (
+    CheckLoginMixin, PermissionChangeUserMixin, ProtectDeletingMixin
+)
 from django.utils.translation import gettext_lazy as _
+
 
 # Create your views here.
 class UsersIndexView(ListView):
@@ -32,7 +34,9 @@ class UserFormCreate(SuccessMessageMixin, CreateView):
     }
 
 
-class UserFormUpdate(PermissionChangeUserMixin, CheckLoginMixin, SuccessMessageMixin, UpdateView):
+class UserFormUpdate(PermissionChangeUserMixin,
+                     CheckLoginMixin,
+                     SuccessMessageMixin, UpdateView):
     model = User
     form_class = UpdateUserForm
     template_name = 'form.html'
@@ -44,7 +48,10 @@ class UserFormUpdate(PermissionChangeUserMixin, CheckLoginMixin, SuccessMessageM
     }
 
 
-class UserFormDelete(PermissionChangeUserMixin,CheckLoginMixin,SuccessMessageMixin, ProtectDeletingMixin, DeleteView):
+class UserFormDelete(PermissionChangeUserMixin,
+                     CheckLoginMixin,
+                     SuccessMessageMixin,
+                     ProtectDeletingMixin, DeleteView):
     model = User
     template_name = 'delete.html'
     success_url = reverse_lazy('users_index')
@@ -55,4 +62,3 @@ class UserFormDelete(PermissionChangeUserMixin,CheckLoginMixin,SuccessMessageMix
         'head': _('Deleting a user'),
         'button_text': _('Yes, delete'),
     }
-

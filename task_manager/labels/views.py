@@ -3,7 +3,6 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import (
     CreateView, UpdateView, DeleteView
 )
-from django.shortcuts import redirect
 from task_manager.labels.models import Label
 from task_manager.labels.forms import LabelForm
 from django.urls import reverse_lazy
@@ -45,12 +44,17 @@ class LabelUpdateView(SuccessMessageMixin, CheckLoginMixin, UpdateView):
     }
 
 
-class LabelDeleteView(CheckLoginMixin, SuccessMessageMixin, ProtectDeletingMixin, DeleteView):
+class LabelDeleteView(CheckLoginMixin,
+                      SuccessMessageMixin,
+                      ProtectDeletingMixin,
+                      DeleteView):
     model = Label
     template_name = 'delete.html'
     success_url = reverse_lazy('labels_index')
     success_message = _('Label successfully deleted')
-    error_message = _('Cannot delete this label because it is associated with a task.')
+    error_message = _(
+        'Cannot delete this label because it is associated with a task.'
+    )
     redirect_url = 'labels_index'
     extra_context = {
         'head': _('Deleting a label'),
