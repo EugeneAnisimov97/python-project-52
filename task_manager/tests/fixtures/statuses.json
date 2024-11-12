@@ -1,0 +1,18 @@
+[
+    {
+        "model": "statuses.status",
+        "pk": 1,
+        "fields": {
+            "name": "with task",
+            "created_at": "2024-11-11T11:00:00Z"
+        }
+    },
+    {
+        "model": "statuses.status",
+        "pk": 2,
+        "fields": {
+            "name": "without task",
+            "created_at": "2024-11-11T11:00:00Z"
+        }
+    }
+]

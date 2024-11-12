@@ -29,6 +29,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', False)
 
+FIXTURE_DIRS = (
+    os.path.join(BASE_DIR, "task_manager", "tests", "fixtures"),
+)
 
 ALLOWED_HOSTS = [
     'python-project-52-ho6p.onrender.com',
