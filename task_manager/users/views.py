@@ -34,8 +34,8 @@ class UserFormCreate(SuccessMessageMixin, CreateView):
     }
 
 
-class UserFormUpdate(PermissionChangeUserMixin,
-                     CheckLoginMixin,
+class UserFormUpdate(CheckLoginMixin,
+                     PermissionChangeUserMixin,
                      SuccessMessageMixin, UpdateView):
     model = User
     form_class = UpdateUserForm

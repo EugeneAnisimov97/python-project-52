@@ -6,13 +6,13 @@ from django.contrib.auth import get_user_model
 
 
 # Create your tests here.
-class LabelTests(TestCase):
+class StatusTests(TestCase):
     fixtures = ['labels.json', 'tasks.json', 'users.json', 'statuses.json']
 
     def setUp(self):
         pass
 
-    def test_create_label(self):
+    def test_create_status(self):
         response = self.client.get(reverse('statuses_create'), follow=True)
         self.assertRedirects(response, reverse('login'))
         self.assertContains(
@@ -30,7 +30,7 @@ class LabelTests(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertTrue(Status.objects.filter(name='new_status').exists())
 
-    def test_label_index(self):
+    def test_status_index(self):
         response = self.client.get(reverse('statuses_index'), follow=True)
         self.assertRedirects(response, reverse('login'))
         self.assertContains(
@@ -44,7 +44,7 @@ class LabelTests(TestCase):
         self.assertContains(response, "with task")
         self.assertContains(response, "without task")
 
-    def test_update_label(self):
+    def test_update_status(self):
         self.client.force_login(get_user_model().objects.get(pk=2))
         status = Status.objects.get(pk=1)
         response = self.client.get(reverse('statuses_update',
@@ -61,7 +61,7 @@ class LabelTests(TestCase):
         status.refresh_from_db()
         self.assertEqual(status.name, 'updatedstatus')
 
-    def test_delete_label(self):
+    def test_delete_status(self):
         self.client.force_login(get_user_model().objects.get(pk=2))
         label = Status.objects.get(pk=2)
         response = self.client.post(reverse('statuses_delete',

@@ -3,8 +3,8 @@
         "model": "users.user",
         "pk": 1,
         "fields": {
-            "first_name": "1",
-            "last_name": "11",
+            "first_name": "first1",
+            "last_name": "last1",
             "username": "111",
             "password": "1"
         }
@@ -13,10 +13,20 @@
         "model": "users.user",
         "pk": 2,
         "fields": {
-            "first_name": "2",
-            "last_name": "22",
+            "first_name": "first2",
+            "last_name": "last2",
             "username": "222",
             "password": "2"
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 3,
+        "fields": {
+            "first_name": "deleteme",
+            "last_name": "please",
+            "username": "useless",
+            "password": "111"
         }
     }
 ]
