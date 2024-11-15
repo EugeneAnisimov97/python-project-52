@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "Task manager"
 authors = ["Eugene Anisimov <zero0061@mail.ru>"]
 readme = "README.md"
 packages = [

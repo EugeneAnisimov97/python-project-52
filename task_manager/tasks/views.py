@@ -13,7 +13,6 @@ from task_manager.tasks.filter import TaskFilter
 from django_filters.views import FilterView
 
 
-# Create your views here.
 class TasksIndex(CheckLoginMixin, FilterView):
     template_name = 'tasks/index.html'
     model = Task
@@ -55,7 +54,6 @@ class TaskUpdateView(SuccessMessageMixin, CheckLoginMixin, UpdateView):
 
 class TaskDeleteView(CheckLoginMixin,
                      SuccessMessageMixin,
-                     ProtectDeletingMixin,
                      DeleteView):
     template_name = 'delete.html'
     model = Task

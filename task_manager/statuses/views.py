@@ -54,7 +54,7 @@ class StatusDeleteView(CheckLoginMixin,
     error_message = _(
         'Cannot delete this status because it is associated with a task.'
     )
-    redirect_url = 'statuses_index'
+    redirect_url = reverse_lazy('statuses_index')
     extra_context = {
         'head': _('Deleting a status'),
         'button_text': _('Yes, delete'),

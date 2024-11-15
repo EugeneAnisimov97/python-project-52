@@ -21,9 +21,9 @@
           <td>{{label.name}}</td>
           <td>{{label.created_at}}</td>
           <td>
-            <a href="/labels/{{label.id}}/update/">{% trans "Change" %}</a>
-            <br>
-            <a href="/labels/{{label.id}}/delete/">{% trans "Delete" %}</a>
+            <a href="{% url 'labels_update' label.pk %}">{% trans "Change" %}</a>
+        <br>
+        <a href="{% url 'labels_delete' label.pk %}">{% trans "Delete" %}</a>
           </td>
         </tr>
         {% endfor %}

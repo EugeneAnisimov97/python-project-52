@@ -5,7 +5,6 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 
 
-# Create your tests here.
 class LabelTests(TestCase):
     fixtures = ['labels.json', 'tasks.json', 'users.json', 'statuses.json']
 

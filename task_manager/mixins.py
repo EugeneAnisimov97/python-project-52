@@ -1,8 +1,9 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.db.models import ProtectedError
+from django.urls import reverse_lazy
 
 
 class CheckLoginMixin(LoginRequiredMixin):
@@ -14,19 +15,9 @@ class CheckLoginMixin(LoginRequiredMixin):
         return super().dispatch(request, *args, **kwargs)
 
 
-class PermissionChangeUserMixin(UserPassesTestMixin):
-    def test_func(self):
-        return self.get_object().id == self.request.user.id
-
-    def handle_no_permission(self):
-        message = _("You don't have permissions to modify another user.")
-        messages.error(self.request, message)
-        return redirect('users_index')
-
-
 class ProtectDeletingMixin:
-    error_message = None
-    redirect_url = None
+    error_message = _('Something went wrong')
+    redirect_url = reverse_lazy('index')
 
     def post(self, request, *args, **kwargs):
         try:

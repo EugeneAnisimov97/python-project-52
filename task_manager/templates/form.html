@@ -6,13 +6,10 @@
     <div class="container d-flex align-items-center justify-content-center h-90">
         <div class="my-5">
             <div class="card">
-
                 <h1 class="text-center mb-4">{{head}}</h1>
-
                 <form method="post" class="px-3">
                     {% csrf_token %}
                     {% bootstrap_form form %}
-                    
                     {% bootstrap_button button_text button_type="submit" button_class="btn btn-primary" %}
                 </form>
             </div>

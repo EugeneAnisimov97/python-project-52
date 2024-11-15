@@ -10,7 +10,6 @@ from task_manager.mixins import CheckLoginMixin, ProtectDeletingMixin
 from django.utils.translation import gettext_lazy as _
 
 
-# Create your views here.
 class LabelIndex(CheckLoginMixin, ListView):
     template_name = 'labels/index.html'
     model = Label
@@ -55,7 +54,7 @@ class LabelDeleteView(CheckLoginMixin,
     error_message = _(
         'Cannot delete this label because it is associated with a task.'
     )
-    redirect_url = 'labels_index'
+    redirect_url = reverse_lazy('labels_index')
     extra_context = {
         'head': _('Deleting a label'),
         'button_text': _('Yes, delete'),
