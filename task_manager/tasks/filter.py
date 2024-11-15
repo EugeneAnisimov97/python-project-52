@@ -9,10 +9,10 @@ class TaskFilter(django_filters.FilterSet):
     labels = django_filters.ModelMultipleChoiceFilter(
         queryset=Label.objects.all(),
         label=_('Label'),
-        widget=forms.CheckboxSelectMultiple(attrs={
-            'class': 'form-control',
-            'style': 'max-height: 150px; overflow-y: auto;'
-        }),
+        # widget=forms.CheckboxSelectMultiple(attrs={
+        #     'class': 'form-control',
+        #     'style': 'max-height: 150px; overflow-y: auto;'
+        # }),
         required=False
     )
     self_task = django_filters.BooleanFilter(

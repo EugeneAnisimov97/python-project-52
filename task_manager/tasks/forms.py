@@ -9,3 +9,9 @@ class TaskForm(forms.ModelForm):
             'name', 'description',
             'status', 'executor', 'labels'
         ]
+        # widgets = {
+        #     'labels': forms.CheckboxSelectMultiple(attrs={
+        #         'class': 'form-control',
+        #         'style': 'max-height: 150px; overflow-y: auto;'}
+        #     )
+        # }
