@@ -5,7 +5,7 @@ from django.views.generic import (
     CreateView, UpdateView, DeleteView, DetailView
 )
 from django.urls import reverse_lazy
-from task_manager.mixins import CheckLoginMixin, ProtectDeletingMixin
+from task_manager.mixins import CheckLoginMixin
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
