@@ -30,7 +30,7 @@ class UserFormCreate(SuccessMessageMixin, CreateView):
     success_message = _('User registered successfully')
     extra_context = {
         'head': _('Sign-up'),
-        'button_text': _('Sing-up'),
+        'button_text': _('Register'),
     }
 
 

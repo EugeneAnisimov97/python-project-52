@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 class TaskFilter(django_filters.FilterSet):
     labels = django_filters.ModelMultipleChoiceFilter(
         queryset=Label.objects.all(),
-        label=_('Labels'),
+        label=_('Label'),
         widget=forms.CheckboxSelectMultiple(attrs={
             'class': 'form-control',
             'style': 'max-height: 150px; overflow-y: auto;'
