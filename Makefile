@@ -6,13 +6,13 @@ install:
 	poetry install
 
 dev:
-	export DJANGO_ENV=development && poetry run gunicorn --bind 0.0.0.0:8000 task_manager.wsgi:application
+	export DJANGO_ENV=development && python manage.py runserver
 
 lint:
 	poetry run flake8
 
 start:
-	export DJANGO_ENV=production && poetry run gunicorn --bind 0.0.0.0:8000 task_manager.wsgi:application
+	export DJANGO_ENV=production && gunicorn task_manager.wsgi:application
 
 genmigrate:
 	@$(MANAGE) makemigrations
