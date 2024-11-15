@@ -212,7 +212,7 @@ msgstr "Вход"
 
 #: task_manager/templates/base.html:48 task_manager/users/views.py:32
 msgid "Sign-up"
-msgstr "Зарегистрироваться"
+msgstr "Регистрация"
 
 #: task_manager/templates/delete.html:6
 msgid "Are you sure you want to delete"
@@ -295,7 +295,7 @@ msgstr "Пользователь успешно зарегистрирован"
 
 #: task_manager/users/views.py:33
 msgid "Sing-up"
-msgstr "Зарегистрироваться"
+msgstr "Регистрация"
 
 #: task_manager/users/views.py:46
 msgid "Change user"
