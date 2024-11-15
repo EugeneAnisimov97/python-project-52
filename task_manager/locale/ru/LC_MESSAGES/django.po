@@ -283,7 +283,7 @@ msgstr "Полное имя"
 #: task_manager/tests/tests_users.py:55 task_manager/tests/tests_users.py:86
 #: task_manager/users/mixins.py:12
 msgid "You don't have permissions to modify another user."
-msgstr "Вы не можете изменять другого пользователя"
+msgstr "У вас нет прав на изменение другого пользователя."
 
 #: task_manager/tests/tests_users.py:74 task_manager/users/views.py:44
 msgid "User successfully changed"
