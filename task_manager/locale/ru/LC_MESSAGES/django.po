@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-15 19:08+0200\n"
+"POT-Creation-Date: 2024-11-15 19:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -281,7 +281,6 @@ msgid "Full name"
 msgstr "Полное имя"
 
 #: task_manager/tests/tests_users.py:55 task_manager/tests/tests_users.py:86
-#: task_manager/users/mixins.py:12
 msgid "You don't have permissions to modify another user."
 msgstr "У вас нет прав на изменение другого пользователя."
 
@@ -292,6 +291,10 @@ msgstr "Пользователь успешно изменен"
 #: task_manager/tests/tests_users.py:96 task_manager/users/views.py:59
 msgid "Cannot delete a user because it is in use"
 msgstr "Невозможно удалить пользователя, потому что он используется"
+
+#: task_manager/users/mixins.py:12
+msgid "You do not have permission to change"
+msgstr "У вас нет прав для изменения"
 
 #: task_manager/users/views.py:30
 msgid "User registered successfully"

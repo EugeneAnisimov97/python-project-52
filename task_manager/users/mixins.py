@@ -9,6 +9,6 @@ class CheckSelfUserMixin(UserPassesTestMixin):
         return self.get_object().id == self.request.user.id
 
     def handle_no_permission(self):
-        message = _("You don't have permissions to modify another user.")
+        message = _("You do not have permission to change")
         messages.error(self.request, message)
         return redirect('users_index')
