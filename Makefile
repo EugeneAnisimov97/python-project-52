@@ -6,7 +6,7 @@ install:
 	poetry install
 
 dev:
-	python3 manage.py runserver
+	export DJANGO_ENV=development && poetry run gunicorn --bind 0.0.0.0:8000 task_manager.wsgi:application
 
 lint:
 	poetry run flake8

@@ -97,18 +97,17 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-if os.getenv('DJANGO_ENV') == 'production':
-    DATABASES['default'] = dj_database_url.config(
+    'default': dj_database_url.config(
         conn_max_age=600,
         default=os.getenv('CONFIG_DATABASE_URL')
     )
+}
 
+if os.getenv('DJANGO_ENV') == 'development':
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
