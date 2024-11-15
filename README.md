@@ -30,8 +30,9 @@ poetry install
 
 5. Выполните команды: 
 ```
-make migrations
-make migrate
+make genmigrate - Создание миграций.
+make migrate - В локальную базу для разработки.
+make migrateconfig - В базу данных рабочей среды.
 ```
 
 ***
